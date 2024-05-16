@@ -391,7 +391,10 @@ function updateCurrentDateTime() {
 }
 
 function updateReceiptDisplay(data: ReceiptData) {
-    setTextContent("outputReceiptDate", new Date(data.receiptDate).toLocaleDateString("pt-BR"));
+    const date = new Date(data.receiptDate);
+    date.setDate(date.getDate() + 1);
+
+    setTextContent("outputReceiptDate", date.toLocaleDateString("pt-BR"));
     setTextContent("outputReceiptNumber", data.receiptNumber);
     setTextContent("outputPayerName", data.payerName);
     setTextContent("outputPayerCpfCnpj", data.payerCpfCnpj);
