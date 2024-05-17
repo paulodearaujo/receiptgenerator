@@ -1,159 +1,200 @@
 <!doctype html>
 <html lang="pt-BR">
   <head>
-    <meta charset="UTF-8"/>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Gerador de Recibos</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
-
+    <script
+      async
+      src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+    ></script>
+    <script
+      async
+      src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"
+    ></script>
+    <script
+      async
+      src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"
+    ></script>
   </head>
   <body>
     <main>
       <section>
         <form id="receiptForm">
-        <fieldset>
-          <legend>Dados do Recibo</legend>
-          <label for="receiptDate">Data do recibo:</label>
-          <input id="receiptDate" name="receiptDate" type="date"/><br/>
-          <legend>Logo da empresa:</legend>
-          <input
-                  accept="image/*"
-                  id="companyLogo"
-                  name="companyLogo"
-                  type="file"
-          /><br/>
-          <label for="receiptNumber">Número do recibo:</label>
-          <input id="receiptNumber" name="receiptNumber" type="text"/><br/>
-        </fieldset>
+          <fieldset>
+            <legend>Dados do Recibo</legend>
+            <label for="receiptDate">Data do recibo:</label>
+            <input
+              id="receiptDate"
+              name="receiptDate"
+              required
+              type="date"
+            /><br />
+            <legend>Logo da empresa:</legend>
+            <input
+              accept="image/*"
+              id="companyLogo"
+              name="companyLogo"
+              type="file"
+            /><br />
+            <label for="receiptNumber">Número do recibo:</label>
+            <input id="receiptNumber" name="receiptNumber" type="text" /><br />
+          </fieldset>
 
-        <fieldset>
-          <legend>Dados do Pagador</legend>
-          <label for="payerName">Nome:</label>
-          <input id="payerName" name="payerName" type="text"/><br/>
+          <fieldset>
+            <legend>Dados do Pagador</legend>
+            <label for="payerName">Nome:</label>
+            <input id="payerName" name="payerName" required type="text" /><br />
 
-          <label for="payerCpfCnpj">CPF/CNPJ:</label>
-          <input id="payerCpfCnpj" name="payerCpfCnpj" type="text"/><br/>
-          <p id="payerCpfCnpjError">CPF ou CNPJ inválido.</p>
+            <label for="payerCpfCnpj">CPF/CNPJ:</label>
+            <input
+              id="payerCpfCnpj"
+              name="payerCpfCnpj"
+              required
+              type="text"
+            /><br />
+            <p id="payerCpfCnpjError">CPF ou CNPJ inválido.</p>
 
-          <label for="payerPhone">Celular:</label>
-          <input id="payerPhone" name="payerPhone" type="tel"/><br/>
-        </fieldset>
+            <label for="payerPhone">Celular:</label>
+            <input
+              id="payerPhone"
+              name="payerPhone"
+              required
+              type="tel"
+            /><br />
+          </fieldset>
 
-        <fieldset>
-          <legend>Dados do Beneficiário</legend>
-          <label for="beneficiaryName">Nome:</label>
-          <input
-                  id="beneficiaryName"
-                  name="beneficiaryName"
-                  type="text"
-          /><br/>
+          <fieldset>
+            <legend>Dados do Beneficiário</legend>
+            <label for="beneficiaryName">Nome:</label>
+            <input
+              id="beneficiaryName"
+              name="beneficiaryName"
+              required
+              type="text"
+            /><br />
 
-          <label for="beneficiaryCpfCnpj">CPF/CNPJ:</label>
-          <input
-                  id="beneficiaryCpfCnpj"
-                  name="beneficiaryCpfCnpj"
-                  type="text"
-          /><br/>
-          <p id="beneficiaryCpfCnpjError">CPF ou CNPJ inválido.</p>
-          <label for="beneficiaryState">Estado:</label>
-          <select id="beneficiaryState" name="beneficiaryState">
-            <option value="AC">Acre</option>
-            <option value="AL">Alagoas</option>
-            <option value="AP">Amapá</option>
-            <option value="AM">Amazonas</option>
-            <option value="BA">Bahia</option>
-            <option value="CE">Ceará</option>
-            <option value="DF">Distrito Federal</option>
-            <option value="ES">Espírito Santo</option>
-            <option value="GO">Goiás</option>
-            <option value="MA">Maranhão</option>
-            <option value="MT">Mato Grosso</option>
-            <option value="MS">Mato Grosso do Sul</option>
-            <option value="MG">Minas Gerais</option>
-            <option value="PA">Pará</option>
-            <option value="PB">Paraíba</option>
-            <option value="PR">Paraná</option>
-            <option value="PE">Pernambuco</option>
-            <option value="PI">Piauí</option>
-            <option value="RJ">Rio de Janeiro</option>
-            <option value="RN">Rio Grande do Norte</option>
-            <option value="RS">Rio Grande do Sul</option>
-            <option value="RO">Rondônia</option>
-            <option value="RR">Roraima</option>
-            <option value="SC">Santa Catarina</option>
-            <option value="SP">São Paulo</option>
-            <option value="SE">Sergipe</option>
-            <option value="TO">Tocantins</option>
-          </select>
-          <br/>
-        </fieldset>
+            <label for="beneficiaryCpfCnpj">CPF/CNPJ:</label>
+            <input
+              id="beneficiaryCpfCnpj"
+              name="beneficiaryCpfCnpj"
+              required
+              type="text"
+            /><br />
+            <p id="beneficiaryCpfCnpjError">CPF ou CNPJ inválido.</p>
+            <label for="beneficiaryState">Estado:</label>
+            <select id="beneficiaryState" name="beneficiaryState" required>
+              <option value="AC">Acre</option>
+              <option value="AL">Alagoas</option>
+              <option value="AP">Amapá</option>
+              <option value="AM">Amazonas</option>
+              <option value="BA">Bahia</option>
+              <option value="CE">Ceará</option>
+              <option value="DF">Distrito Federal</option>
+              <option value="ES">Espírito Santo</option>
+              <option value="GO">Goiás</option>
+              <option value="MA">Maranhão</option>
+              <option value="MT">Mato Grosso</option>
+              <option value="MS">Mato Grosso do Sul</option>
+              <option value="MG">Minas Gerais</option>
+              <option value="PA">Pará</option>
+              <option value="PB">Paraíba</option>
+              <option value="PR">Paraná</option>
+              <option value="PE">Pernambuco</option>
+              <option value="PI">Piauí</option>
+              <option value="RJ">Rio de Janeiro</option>
+              <option value="RN">Rio Grande do Norte</option>
+              <option value="RS">Rio Grande do Sul</option>
+              <option value="RO">Rondônia</option>
+              <option value="RR">Roraima</option>
+              <option value="SC">Santa Catarina</option>
+              <option value="SP">São Paulo</option>
+              <option value="SE">Sergipe</option>
+              <option value="TO">Tocantins</option>
+            </select>
+            <br />
+          </fieldset>
 
-        <fieldset id="serviceItems">
-          <legend>Serviços/Produtos</legend>
-          <div class="serviceItem">
-            <label for="description1">Descrição:</label>
-            <input id="description1" name="description1" required type="text"/>
-
-            <label for="total1">Valor total:</label>
-            <input id="total1" name="total1" placeholder="R$" required type="text"/>
-          </div>
-            <!-- Template para novos itens -->
-          <template id="serviceItemTemplate">
+          <fieldset id="serviceItems">
+            <legend>Serviços/Produtos</legend>
             <div class="serviceItem">
-              <label for="description">Descrição:</label>
-              <input id="description" name="description" required type="text"/>
+              <label for="description1">Descrição:</label>
+              <input
+                id="description1"
+                name="description1"
+                required
+                type="text"
+              />
 
-              <label for="total">Valor total:</label>
-              <input id="total" name="total" placeholder="R$" required type="text"/>
-
-              <button class="removeItemBtn" type="button">Remover</button>
+              <label for="total1">Valor total:</label>
+              <input
+                id="total1"
+                name="total1"
+                placeholder="R$"
+                required
+                type="text"
+              />
             </div>
-          </template>
-          <button id="addItem" type="button">
-            Adicionar
-          </button>
-        </fieldset>
+            <!-- Template para novos itens -->
+            <template id="serviceItemTemplate">
+              <div class="serviceItem">
+                <label for="description">Descrição:</label>
+                <input
+                  id="description"
+                  name="description"
+                  required
+                  type="text"
+                />
 
-        <fieldset>
-          <legend>Observações</legend>
-          <label for="observations">Detalhamento:</label>
-          <textarea
-                  cols="50"
-                  id="observations"
-                  name="observations"
-                  rows="3"
-          ></textarea
-          ><br/>
-        </fieldset>
-        <div>
-          <button
-                  id="generateReceipt"
-                  type="submit"
-          >
-            Gerar Recibo
-          </button>
-        </div>
-      </form>
+                <label for="total">Valor total:</label>
+                <input
+                  id="total"
+                  name="total"
+                  placeholder="R$"
+                  required
+                  type="text"
+                />
+
+                <button class="removeItemBtn" type="button">Remover</button>
+              </div>
+            </template>
+            <button id="addItem" type="button">Adicionar</button>
+          </fieldset>
+
+          <fieldset>
+            <legend>Observações</legend>
+            <label for="observations">Detalhamento:</label>
+            <textarea
+              cols="50"
+              id="observations"
+              name="observations"
+              rows="3"
+            ></textarea
+            ><br />
+          </fieldset>
+          <div>
+            <button id="generateReceipt" type="submit">Gerar Recibo</button>
+          </div>
+        </form>
       </section>
       <section id="receiptOutput">
         <h2>Recibo de Pagamento nº <span id="outputReceiptNumber"></span></h2>
         <div id="logoContainer"></div>
         <p>Data de emissão: <span id="outputReceiptDate"></span></p>
 
-          <!-- Dados do Pagador -->
+        <!-- Dados do Pagador -->
         <h3>Dados do Pagador</h3>
         <p>Nome: <span id="outputPayerName"></span></p>
         <p>CPF/CNPJ: <span id="outputPayerCpfCnpj"></span></p>
         <p>Celular: <span id="outputPayerPhone"></span></p>
 
-          <!-- Dados do Beneficiário -->
+        <!-- Dados do Beneficiário -->
         <h3>Dados do Beneficiário</h3>
         <p>Nome: <span id="outputBeneficiaryName"></span></p>
         <p>CPF/CNPJ: <span id="outputBeneficiaryCpfCnpj"></span></p>
         <p>Estado: <span id="outputBeneficiaryState"></span></p>
 
-          <!-- Serviço/Produto -->
+        <!-- Serviço/Produto -->
         <h3>Serviços/Produtos</h3>
         <template id="outputServiceItemTemplate">
           <div class="outputServiceItem">
@@ -174,23 +215,18 @@
             confirmando o recebimento e a realização do pagamento mencionado,
             sem pendências restantes conforme detalhado neste documento.
           </p>
-          <p>Recibo gerado online com <a href="https://infinitepay.io/">InfinitePay</a>. (por utm e o link da página quando tiver no webflow)</p>
+          <p>
+            Recibo gerado online com
+            <a href="https://infinitepay.io/">InfinitePay</a>. (por utm e o link
+            da página quando tiver no webflow)
+          </p>
         </div>
       </section>
       <section id="receiptOutputButtons">
         <div>
-          <button
-                  id="printReceiptButton"
-                  type="button"
-          >
-            Imprimir Recibo
-          </button>
-          <button id="downloadReceiptButton">
-            Baixar Recibo
-          </button>
-          <button id="newReceiptButton" type="button">
-            Gerar Novo Recibo
-          </button>
+          <button id="printReceiptButton" type="button">Imprimir Recibo</button>
+          <button id="downloadReceiptButton">Baixar Recibo</button>
+          <button id="newReceiptButton" type="button">Gerar Novo Recibo</button>
         </div>
       </section>
     </main>
